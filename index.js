@@ -96,13 +96,13 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 */ 
 
 function macSonucu(callback,ceyrek){
-  let EvSahibi = 0;
-  let KonukTakim = 0;
+  let num1 = 0;
+  let num2 = 0;
   for (let i = ceyrek; i > 0; i--) {
-    EvSahibi += callback();
-    KonukTakim += callback();
+    num1 += callback();
+    num2 += callback();
     }
-  return {"EvSahibi":EvSahibi,"KonukTakim":KonukTakim};
+  return {EvSahibi:num1,KonukTakim:num2};
 }
 
 
@@ -124,9 +124,10 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
+function periyotSkoru(callback) {
+  const num1 = callback();
+  const num2 = callback();
+  return {EvSahibi:num1,KonukTakim:num2};
 }
 
 
