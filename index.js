@@ -18,7 +18,7 @@
 function ilkiniDon(stringArray, callback) {
   return callback(stringArray[0])
 }
-console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin+metin}));
+console.log('örnek görev:', ilkiniDon(['as', 'sa'], function (metin) { return metin + metin }));
 
 // Başlangıç Challenge'ı Sonu
 
@@ -44,7 +44,7 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
 function skorArtirici() {
   let skor = 0;
   return function skorGuncelle() {
-   return skor++;
+    return skor++;
   }
 }
 
@@ -73,8 +73,8 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(){
-  return Math.floor(Math.random() * 16 + 10); 
+function takimSkoru() {
+  return Math.floor(Math.random() * 16 + 10);
 }
 
 
@@ -93,16 +93,16 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   "EvSahibi": 92,
   "KonukTakim": 80
 }
-*/ 
+*/
 
-function macSonucu(callback,ceyrek){
+function macSonucu(callback, ceyrek) {
   let num1 = 0;
   let num2 = 0;
   for (let i = ceyrek; i > 0; i--) {
     num1 += callback();
     num2 += callback();
-    }
-  return {EvSahibi:num1,KonukTakim:num2};
+  }
+  return { EvSahibi: num1, KonukTakim: num2 };
 }
 
 
@@ -127,7 +127,7 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
 function periyotSkoru(callback) {
   const num1 = callback();
   const num2 = callback();
-  return {EvSahibi:num1,KonukTakim:num2};
+  return { EvSahibi: num1, KonukTakim: num2 };
 }
 
 
@@ -162,15 +162,35 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi(callback1, callback2, ceyrek) {
+  let tabela = [];
+  let EvSahibi = 0;
+  let KonukTakim = 0;
+  for (let i = 1; i <= ceyrek; i++) {
+    let num1 = callback1(callback2).EvSahibi;
+    let num2 = callback1(callback2).KonukTakim;
+    tabela.push(`${i}. Periyot: Ev Sahibi ${num1} - Konuk Takım ${num2}`);
+    EvSahibi += num1;
+    KonukTakim += num2;
+  }
+  let uzatma = 0;
+  while (EvSahibi === KonukTakim) {
+    uzatma++
+    let num1 = callback1(callback2).EvSahibi;
+    let num2 = callback1(callback2).KonukTakim;
+    tabela.push(`${uzatma}. Uzatma: Ev Sahibi ${num1} - Konuk Takım ${num2}`);
+    EvSahibi += num1;
+    KonukTakim += num2;
+  }
+  tabela.push(`Maç Sonucu: Ev Sahibi ${EvSahibi} - Konuk Takım ${KonukTakim}`);
+  return tabela;
 }
 
 
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
-function sa(){
+function sa() {
   console.log('Kodlar çalışıyor');
   return 'as';
 }
