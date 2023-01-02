@@ -30,10 +30,14 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+  Skor1'deki skor değerini sadece skorArtirici() fonksiyonu ile güncelleyebilliriz,
+  bu da skor değerini başka fonksiyonların güncellemesine karşı korumaya alır ve aynı zamanda güncel değere dışarıdan ulaşabilriz.
+  Skor2'de ise skor değeri global atanmış olduğu için başka fonksiyonlarda ulaşabilir,
+  bu da skor değerinin istenmeden değişebilme olasılığını ortaya çıkartır.
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+  Skor1'de closure kullanılmıştır.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+  Skor değerine globaldeki diğer fonksiyonların erişerek değişiklik yapılmasını istemiyor skor2, istemiyorsak skor2 daha mantıklıdır.
 */
 
 // skor1 kodları
@@ -45,6 +49,11 @@ function skorArtirici() {
 }
 
 const skor1 = skorArtirici();
+
+/*  const skorArtirici = (function() {
+  let skor = 0;
+  return function () {skor++;return skor}})();
+*/
 
 // skor2 kodları
 let skor = 0;
@@ -64,8 +73,8 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+  return Math.floor(Math.random() * 16 + 10); 
 }
 
 
@@ -86,8 +95,14 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(callback,ceyrek){
+  let EvSahibi = 0;
+  let KonukTakim = 0;
+  for (let i = ceyrek; i > 0; i--) {
+    EvSahibi += callback();
+    KonukTakim += callback();
+    }
+  return {"EvSahibi":EvSahibi,"KonukTakim":KonukTakim};
 }
 
 
