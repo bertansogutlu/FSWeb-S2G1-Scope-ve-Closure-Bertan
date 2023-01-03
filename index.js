@@ -37,7 +37,7 @@ console.log('örnek görev:', ilkiniDon(['as', 'sa'], function (metin) { return 
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
   Skor1'de closure kullanılmıştır.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
-  Skor değerine globaldeki diğer fonksiyonların erişerek değişiklik yapılmasını istemiyor skor2, istemiyorsak skor2 daha mantıklıdır.
+  Skor değerine globaldeki diğer fonksiyonların erişerek değişiklik yapabilmesini istiyorsak skor2, istemiyorsak skor1 daha mantıklıdır.
 */
 
 // skor1 kodları
